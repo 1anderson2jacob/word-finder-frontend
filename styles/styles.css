@@ -1,0 +1,149 @@
+body {
+  background-color: #a3f5cc;
+  
+}
+
+main {
+  margin: auto;
+  display: block;
+  background-color: #dddddd;
+  border: 1px solid black;
+  border-radius: 2px;
+  padding: 10px;
+  width: 800px;
+  
+}
+
+main h1 {
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 30px;
+  background-color: #9d28d7;
+  border: 1px double black;
+  border-radius: 8px;
+  color: #dddddd;
+  padding: 5px;
+}
+
+main button {
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 30px;
+  background-color: #9d28d7;
+  border: 1px double black;
+  border-radius: 8px;
+  color: #dddddd;
+  padding: 5px;
+}
+
+header {
+  height: 50px;
+}
+
+.letter-square {
+  text-align: center;
+  
+  margin: 3px;
+  font-size: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  border-bottom: 5px black solid;
+  background-color: #cccccc;
+  box-shadow: 5px -5px 5px 0px #BA68E2;
+}
+
+.letter-square:focus {
+  box-shadow: 5px -5px 5px 0px #e67300;
+}
+
+.flex-box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.arrow-right {
+  background-color: #dddddd;
+  opacity: 70%;
+  margin: 5px;
+  
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 0 25px 43.3px;
+  border-color: transparent transparent transparent #b968e2;
+  
+ }
+
+.arrow-left {
+  background-color: #dddddd;
+  opacity: 70%;
+  margin: 5px;
+  
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 25px 43.3px 25px 0;
+  border-color: transparent #b968e2 transparent transparent;
+  
+}
+
+#results-container{
+  margin-top: 10px;
+}
+
+#list-element li {
+  display: inline;
+  padding: 3px;
+}
+
+input {
+  background-color: #dddddd;
+  font-size: 50px;
+  width: 300px;
+}
+
+@media only screen and (max-device-width: 736px) {
+  
+  main {
+    width: 380px;
+  }
+  
+  .arrow-right {
+    opacity: 70%;
+    margin: 5px;
+
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 0 15px 26.0px;
+    border-color: transparent transparent transparent #b968e2;
+
+ }
+
+  .arrow-left {
+    opacity: 70%;
+    margin: 5px;
+
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 26.0px 15px 0;
+    border-color: transparent #b968e2 transparent transparent;
+  }
+  
+  .letter-square {
+    margin: 3px;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px;
+    border-bottom: 3px black solid;
+    background-color: #cccccc;
+    box-shadow: 3px -3px 3px 0px #BA68E2;
+  }
+  
+ } 
