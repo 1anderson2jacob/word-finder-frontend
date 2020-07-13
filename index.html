@@ -9,22 +9,36 @@
   <title></title>
 </head>
 
-<body onload=addXLetters(6)>
-  <header> </header>
+<body onload="addXLetters(7,'l_tte_s')">
+  <header>
+    <h1>Scrubble</h1>
+    <h3>For those who need some extra help...</h3>
+  </header>
   <main>
-
-    <h1>Letter Pool</h1>
-    <div class="flex-box">
-      <input type="text" id="letter-pool"> </input>
+    <div class="flexbox">
+      <h2>Enter available letters</h2>
+      <input type="text" id="letter-pool" placeholder="letters"> </input>
     </div>
-    <h1>Missing Letters</h1>
-    <div class="flex-box">
+
+    <div class="flexbox">
+      <h2>Enter word as shown</h2>
+    </div>
+
+    <div class="flexbox row">
       <button class="arrow-left" onClick="removeLetters()"></button>
       <div id="letter-container"></div>
       <button class="arrow-right" onClick="addLetter()"></button>
     </div>
-    <button onClick="queryDb()">Get Words</button>
-    <div id="results-container"> </div>
+
+    <div class="flexbox row">
+      <button class="button" onClick="queryDb()">Search</button>
+      <button class="button" onClick="resetEverything()">Reset</button>
+    </div>
+
+    <div class="flexbox row">
+      <div id="results-container"> </div>
+    </div>
+
   </main>
 
 </body>
