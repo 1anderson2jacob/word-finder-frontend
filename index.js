@@ -1,19 +1,22 @@
 'use strict';
 
-function addLetter() {
-  let inputLetterSquare = document.createElement('input');
-  inputLetterSquare.classList.add('letter-square');
-  inputLetterSquare.innerHTML = '';
-  inputLetterSquare.setAttribute('type', 'text')
-  inputLetterSquare.setAttribute('maxlength', '1');
-  inputLetterSquare.addEventListener('keyup', autoTab);
+function addLetter(char = '') {
+  let el = document.createElement('input');
+  el.classList.add('letter-square');
+  el.setAttribute('placeholder', char);
+  el.setAttribute('type', 'text')
+  el.setAttribute('maxlength', '1');
+  el.oninput = autoTab
+  el.onfocus = () => {
+    el.removeAttribute('placeholder');
+  }
   let letterContainer = document.getElementById('letter-container');
-  letterContainer.appendChild(inputLetterSquare);
+  letterContainer.appendChild(el);
 }
 
-function addXLetters(num) {
+function addXLetters(num, str) {
   for (let i = 0; i < num; i++) {
-    addLetter();
+    addLetter(str[i]);
   }
 }
 
@@ -29,13 +32,7 @@ function squareValue(e) {
 }
 
 function autoTab(e) {
-  if (e.keyCode === 8) {
-    if (this.previousElementSibling) {
-      this.previousElementSibling.focus();
-    }
-
-  }
-  else {
+  if (this.value.length == this.getAttribute('maxlength')) {
     if (this.nextElementSibling) {
       this.nextElementSibling.focus();
     }
@@ -79,7 +76,7 @@ function displayWords(data) {
   removeList();
 
   let resultsContainer = document.getElementById('results-container');
-  let wordsList = eliminateExtraWords(data);
+  let wordsList = removeExtraWords(data);
   let listElement = document.createElement('ul');
 
   listElement.setAttribute('id', 'list-element');
@@ -92,27 +89,26 @@ function displayWords(data) {
     listElement.appendChild(wordElement);
   }
 
-  let wordElement = document.createElement('li')
-  listElement.appendChild(wordElement);
-
 };
 
-function eliminateExtraWords(data) {
+function removeExtraWords(data) {
   let letterPool = document.getElementById('letter-pool').value;
   let wordsArr = [];
   let prunedWordsArr = [];
-  let regex = new RegExp('([^' + letterPool + '])', 'gi')
+  let regex = new RegExp('\\b[' + letterPool + ']+\\b', 'i')
 
   for (let index of data) {
     wordsArr.push(index.word);
   }
 
   for (let i in wordsArr) {
-    if (!wordsArr[i].match(regex)) {
+    // console.log(wordsArr[i].match(regex));
+    if (regex.test(wordsArr[i])) {
       prunedWordsArr.push(wordsArr[i]);
     }
   }
-
+  console.log(prunedWordsArr)
+  prunedWordsArr = removeDupes(prunedWordsArr, letterPool);
   return prunedWordsArr;
 }
 
@@ -122,3 +118,84 @@ function removeList() {
     listElement.remove();
   }
 }
+
+function resetEverything() {
+  document.getElementById('letter-pool').value = '';
+  clearLetters();
+  removeList();
+}
+
+function clearLetters() {
+  let el = document.getElementById('letter-container');
+  let children = el.childNodes;
+
+  for (let i = 0; i < children.length; i++) {
+    children[i].value = '';
+  }
+}
+
+function removeDupes(wordList, wordPool) {
+  let poolObj = {}
+  let wordListObj = {};
+  let arr = [];
+  // push letterpool to an object
+  poolObj = count(wordPool);
+
+  for (let i = 0; i < wordList.length; i++) {
+    // push prunedWordsList to an object
+    wordListObj = count(wordList[i]);
+    // console.log(wordListObj)
+    if (containsKeyValues(poolObj, wordListObj)) {
+      arr.push(wordList[i]);
+    }
+
+  }
+
+  return arr;
+}
+
+function count(str) {
+  //takes a string and returns an object. each key is a letter; each value is the number of each of those letters
+  let obj = {}
+  let letter = '';
+  for (let i = 0; i < str.length; i++) {
+
+    letter = str[i];
+    if (obj.hasOwnProperty(letter)) {
+      obj[letter] = obj[letter] + 1;
+
+    } else {
+      obj[letter] = 1;
+    }
+
+  }
+
+  return obj;
+}
+
+function containsKeyValues(obj1, obj2) {
+  //obj1: poolObj
+  //obj2: wordsListObj
+  //checks to see if obj2 has at least as many vals for each of its keys as obj1
+
+  for (let key in obj2) {
+    // for (let key in obj1) {
+    if (!(obj2[key] <= obj1[key])) {
+
+      return false;
+    }
+  }
+  return true;
+}
+
+// function clearLetters() {
+//   // changeLetterSquares('value', '');
+// }
+
+// function changeLetterSquares(attr, val) {
+//   let el = document.getElementById('letter-container');
+//   let children = el.childNodes;
+//   for (let i = 0; i < children.length; i++) {
+//     children[i].attr = val;
+//   }
+// }
