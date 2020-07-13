@@ -7,7 +7,8 @@ header {
 }
 
 body {
-  background-color: #a3f5cc;
+  /* background-color: #a3f5cc; */
+  background-color: #bfffef;
   
 }
 
@@ -16,7 +17,7 @@ main {
   margin-right: 50px;
   background-color: #dddddd;
   border: 1px solid black;
-  border-radius: 2px;
+  border-radius: 30px;
   padding: 10px;
 }
 
@@ -30,6 +31,7 @@ h1 {
 h2 {
   font-family: sans-serif;
   font-size: 20px;
+  margin-top: 10px;
 }
 
 h3 {
@@ -116,7 +118,7 @@ h3 {
   font-family: sans-serif;
   font-size: 28px;
   display: inline-block;
-  padding: 1px;
+  padding: 2px;
   margin: 3px;
   font-family: sans-serif;
   border: 1px solid black;
