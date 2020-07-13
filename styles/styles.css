@@ -13,13 +13,16 @@ body {
 }
 
 main {
-  margin: auto;
+  /* margin: auto; */
   /* display: inline-block; */
+  margin-left: 50px;
+  margin-right: 50px;
   background-color: #dddddd;
   border: 1px solid black;
   border-radius: 2px;
   padding: 10px;
-  width: 800px;
+
+  /* width: 800px; */
   
 }
 
