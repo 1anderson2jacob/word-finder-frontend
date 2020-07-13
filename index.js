@@ -8,7 +8,9 @@ function addLetter(char = '') {
   el.setAttribute('maxlength', '1');
   el.oninput = autoTab
   el.onfocus = () => {
-    el.removeAttribute('placeholder');
+    if (el.hasAttribute('placeholder')) {
+      clearLetterPlaceholders();
+    }
   }
   let letterContainer = document.getElementById('letter-container');
   letterContainer.appendChild(el);
@@ -131,6 +133,15 @@ function clearLetters() {
 
   for (let i = 0; i < children.length; i++) {
     children[i].value = '';
+  }
+}
+
+function clearLetterPlaceholders() {
+  let el = document.getElementById('letter-container');
+  let children = el.childNodes;
+
+  for (let i = 0; i < children.length; i++) {
+    children[i].removeAttribute('placeholder');
   }
 }
 
