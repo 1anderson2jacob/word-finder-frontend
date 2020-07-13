@@ -1,8 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Arvo:700);
 
 header {
-  margin-top: 20px;
-  height: 150px;
+  margin-top: 30px;
+  /* height: 150px; */
+  margin-bottom: 40px;
   text-align: center;
 }
 
@@ -144,10 +145,18 @@ h3 {
 }
 
 @media only screen and (max-device-width: 736px) {
-  
+  h1 {
+    font-size: 100px;
+  }
+
   h2 {
     font-size: 35px;
   }
+
+  h3 {
+    font-size: 25px;
+  }
+
 
   #results-container li {
     font-size: 38px;
