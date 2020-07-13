@@ -51,7 +51,7 @@ function combineInputs() {
       wordString += letterChildren[i].value;
     }
   }
-
+  wordString = wordString.toLowerCase();
   let queryObj = {
     incompleteWord: wordString,
   }
@@ -92,7 +92,7 @@ function displayWords(data) {
 };
 
 function removeExtraWords(data) {
-  let letterPool = document.getElementById('letter-pool').value;
+  let letterPool = document.getElementById('letter-pool').value.toLowerCase();
   let wordsArr = [];
   let prunedWordsArr = [];
   let regex = new RegExp('\\b[' + letterPool + ']+\\b', 'i')
