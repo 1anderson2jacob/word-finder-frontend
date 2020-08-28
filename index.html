@@ -14,7 +14,7 @@
     <h1>Scrubble</h1>
     <h3>For those who need some extra help...</h3>
   </header>
-  <main>
+  <main class="stylebox">
     <div class="flexbox">
       <h2>Enter available letters</h2>
       <input type="text" id="letter-pool" placeholder="letters"> </input>
@@ -39,9 +39,22 @@
       <div id="results-container"> </div>
     </div>
 
-    <div class="definition-results"></div>
 
   </main>
+
+  <div class="stylebox display-none" id="definition-container">
+    <h2 id="noun" class="display-none">noun</h2>
+    <p id="nounP"></p>
+
+    <h2 id="verb" class="display-none">verb</h2>
+    <p id="verbP"></p>
+
+    <h2 id="adverb" class="display-none">adverb</h2>
+    <p id="adverbP"></p>
+
+    <h2 id="adjective" class="display-none">adjective</h2>
+    <p id="adjectiveP"></p>
+  </div>
 
 </body>
 
