@@ -62,6 +62,8 @@ function combineInputs() {
 }
 
 function queryDb() {
+  removeDefinitions();
+
   let queryUrl = combineInputs();
 
   async function getWords() {
@@ -81,13 +83,19 @@ function displayWords(data) {
   let wordsList = removeExtraWords(data);
   let listElement = document.createElement('ul');
 
+  //event delegation on UL so that LI clicks call queryTwinWord
+  listElement.addEventListener('click', (e) => {
+    if (e.target && e.target.nodeName == "LI") {
+      queryTwinWord(e.target.innerHTML);
+    }
+  });
   listElement.setAttribute('id', 'list-element');
   resultsContainer.appendChild(listElement);
 
   //for each word in wordlist
   for (let word of wordsList) {
     let wordElement = document.createElement('li')
-    wordElement.innerHTML = word + '  ';
+    wordElement.innerHTML = word;
     listElement.appendChild(wordElement);
   }
 
@@ -125,6 +133,7 @@ function resetEverything() {
   document.getElementById('letter-pool').value = '';
   clearLetters();
   removeList();
+  removeDefinitions();
 }
 
 function clearLetters() {
@@ -143,6 +152,32 @@ function clearLetterPlaceholders() {
   for (let i = 0; i < children.length; i++) {
     children[i].removeAttribute('placeholder');
   }
+}
+
+function removeDefinitions() {
+  let definitionContainer = document.getElementById('definition-container');
+
+  let noun = document.getElementById('noun');
+  let verb = document.getElementById('verb');
+  let adverb = document.getElementById('adverb');
+  let adjective = document.getElementById('adjective');
+
+  let nounP = document.getElementById('nounP');
+  let verbP = document.getElementById('verbP');
+  let adverbP = document.getElementById('adverbP');
+  let adjectiveP = document.getElementById('adjectiveP');
+
+  definitionContainer.style.display = 'none';
+
+  nounP.innerHTML = '';
+  verbP.innerHTML = '';
+  adverbP.innerHTML = '';
+  adjectiveP.innerHTML = '';
+
+  noun.style.display = 'none';
+  verb.style.display = 'none';
+  adverb.style.display = 'none';
+  adjective.style.display = 'none';
 }
 
 function removeDupes(wordList, wordPool) {
@@ -199,14 +234,97 @@ function containsKeyValues(obj1, obj2) {
   return true;
 }
 
-// function clearLetters() {
-//   // changeLetterSquares('value', '');
-// }
+function queryTwinWord(word) {
 
-// function changeLetterSquares(attr, val) {
-//   let el = document.getElementById('letter-container');
-//   let children = el.childNodes;
-//   for (let i = 0; i < children.length; i++) {
-//     children[i].attr = val;
-//   }
-// }
+  async function getDefinition() {
+    let res = await fetch('https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=' + word, {
+      'method': 'GET',
+      'headers': {
+        'x-rapidapi-host': 'twinword-word-graph-dictionary.p.rapidapi.com',
+        'x-rapidapi-key': 'dd4036dfc4msh04b02a30e274f1bp1d5043jsnbc4b70b6dd41'
+      }
+    })
+    let data = await res.json();
+    return data;
+  }
+
+  getDefinition().then(data => displayDefinition(data.meaning))
+}
+
+
+function displayDefinition(definitions) {
+  removeDefinitions();
+
+  if (!definitions) {
+    return;
+  }
+
+  let definitionContainer = document.getElementById('definition-container');
+  definitionContainer.style.display = 'block';
+
+  if (definitions.noun) {
+    let noun = document.getElementById('noun');
+    let p = document.getElementById('nounP');
+
+    let i = 0;
+    let regex = /\(nou\)/gi;
+    const str = definitions.noun.replace(regex, () => {
+      i++;
+      return (i + '  ');
+    });
+
+    noun.style.display = 'inline-block';
+    p.innerHTML = str;
+
+  }
+
+  if (definitions.verb) {
+    let verb = document.getElementById('verb');
+    let p = document.getElementById('verbP');
+
+    let i = 0;
+    let regex = /\(vrb\)/gi;
+    const str = definitions.verb.replace(regex, () => {
+      i++;
+      return (i + '  ');
+    });
+
+    verb.style.display = 'inline-block';
+    p.innerHTML = str;
+
+  }
+
+  if (definitions.adverb) {
+    let adverb = document.getElementById('adverb');
+    let p = document.getElementById('adverbP');
+
+    let i = 0;
+    let regex = /\(adv\)/gi;
+    const str = definitions.adverb.replace(regex, () => {
+      i++;
+      return (i + '  ');
+    });
+
+    adverb.style.display = 'inline-block';
+    p.innerHTML = str;
+
+  }
+
+  if (definitions.adjective) {
+    let adjective = document.getElementById('adjective');
+    let p = document.getElementById('adjectiveP');
+
+    let i = 0;
+    let regex = /\(adj\)/gi;
+    const str = definitions.adjective.replace(regex, () => {
+      i++;
+      return (i + '  ');
+    });
+
+    adjective.style.display = 'inline-block';
+    p.innerHTML = str;
+
+  }
+
+}
+
