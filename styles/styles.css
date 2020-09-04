@@ -111,10 +111,10 @@ p {
   opacity: 70%;
   margin: 5px;
   
-  width: 0;
-  height: 0;
+  width: 0px;
+  height: 0px;
   border-style: solid;
-  border-width: 20px 0 20px 34.6px;
+  border-width: 20px 0px 20px 34.6px;
   border-color: transparent transparent transparent #b968e2;
   
  }
@@ -124,10 +124,10 @@ p {
   opacity: 70%;
   margin: 5px;
   
-  width: 0;
-  height: 0;
+  width: 0px;
+  height: 0px;
   border-style: solid;
-  border-width:  20px 34.6px 20px 0;
+  border-width:  20px 34.6px 20px 0px;
   border-color: transparent #b968e2 transparent transparent;
   
 }
@@ -171,7 +171,7 @@ p {
 }
 
 #definition-container p {
-  font-family: san-serif;
+  font-family: sans-serif;
   font-size: 20px;
   margin-left: 15px;
   margin-bottom: 15px;
@@ -221,6 +221,14 @@ p {
     width: 400px;
   }
 
+  #definition-container h2 {
+    font-size: 55px;
+  }
+
+  #definition-container p {
+    font-size: 40px;
+  }
+
   .letter-square {
     font-size: 55px;
     width: 80px;
@@ -228,11 +236,11 @@ p {
   }
 
   .arrow-left {
-    border-width: 40px 69.3px 40px 0;
+    border-width: 40px 69.3px 40px 0px;
   }
 
    .arrow-right {
-    border-width: 40px 0 40px 69.3px;
+    border-width: 40px 0px 40px 69.3px;
    }
 
    .button {
