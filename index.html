@@ -5,15 +5,15 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/styles.css">
-  <script src="index.js"></script>
-  <title></title>
+  <title>Scrubble</title>
 </head>
 
-<body onload="addXLetters(7,'l_tte_s')">
+<body>
   <header>
     <h1>Scrubble</h1>
     <h3>For those who need some extra help...</h3>
   </header>
+
   <main class="stylebox">
     <div class="flexbox">
       <h2>Enter available letters</h2>
@@ -25,20 +25,19 @@
     </div>
 
     <div class="flexbox row">
-      <button class="arrow-left" onClick="removeLetters()"></button>
+      <button class="arrow" id="arrow-left"></button>
       <div id="letter-container"></div>
-      <button class="arrow-right" onClick="addLetter()"></button>
+      <button class="arrow" id="arrow-right"></button>
     </div>
 
     <div class="flexbox row">
-      <button class="button" onClick="queryDb()">Search</button>
-      <button class="button" onClick="resetEverything()">Reset</button>
+      <button id="query-db" class="button">Search</button>
+      <button id="reset-everything" class="button">Reset</button>
     </div>
 
     <div class="flexbox row">
       <div id="results-container"> </div>
     </div>
-
 
   </main>
 
@@ -55,7 +54,8 @@
     <h2 id="adjective" class="display-none">adjective</h2>
     <p id="adjectiveP"></p>
   </div>
-
+  <!-- <script src="test.js" type="module"></script> -->
+  <script src="index.js" type="module"></script>
 </body>
 
 </html>
