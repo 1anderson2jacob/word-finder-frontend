@@ -242,15 +242,16 @@ p {
     height: 80px;
   }
 
-  .arrow-left {
+  #arrow-left {
     border-width: 40px 69.3px 40px 0px;
   }
 
-   .arrow-right {
-    border-width: 40px 0px 40px 69.3px;
-   }
+  #arrow-right {
+  border-width: 40px 0px 40px 69.3px;
+  }
 
-   .button {
-     font-size: 60px;
-   }
+  .button {
+    font-size: 60px;
+  }
 } 
+
